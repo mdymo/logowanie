@@ -1,0 +1,18 @@
+.login {
+  font-size: 1.2rem;
+  border-radius: 50%;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+ a {
+  text-decoration: none;
+  color: rgb(82, 79, 79);
+}
+
+a:hover {
+  color: white;
+}
+
