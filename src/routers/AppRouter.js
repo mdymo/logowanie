@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import App from "../components/App/App";
 import SignIn from "../components/SignIn/SignIn";
 import NotFound from '../components/NotFound/NotFound';
-// import '../firebase/firebase'
+import '../firebase/firebase'
 
 const AppRouter = () => (
   <BrowserRouter>

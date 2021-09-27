@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyBFkUVaLiq12oqYzmm3X8KFSDsp9LjVhnU",
   authDomain: "logowanie-6684e.firebaseapp.com",
@@ -14,12 +15,23 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+console.log('app init')
 
-const database = firebase.database();
 
+export function signInWithEmailPassword(email, password) {
+  console.log('login start', email, password);
+   return firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      console.log(userCredential)
+      return Promise.resolve();
+    })
+  
+    .catch((error) => {
+      console.log('error', error.message);
+      alert('błędne dane');
+      return Promise.reject();
+    });
+}
 
-database.ref().set({
-  name: 'michal dymek'
-});
 
 

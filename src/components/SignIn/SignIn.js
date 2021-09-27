@@ -1,12 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
-// import app from "../../Firebase/Firebase";
-// import { Redirect } from "react-router";
+import { signOut } from "../../actions/auth";
 
-const SignIn = () => {
+const SignIn = (props) => {
+  
+  
+  const onClick = (event) => {
+    event.preventDefault();
+    signOut(props);
+  }
+
   return (
     <div>
-      <h1>Zalogowano</h1> - <Link to='/'>Powrót</Link>
+      <h1>Zalogowano</h1>
+      <button className="btn btn-outline-dark" onClick={onClick}>
+        Powrót
+      </button>
     </div>
   )
 }

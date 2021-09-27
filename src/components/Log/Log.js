@@ -1,32 +1,51 @@
 import React from "react";
 import './Log.css';
 import Form from '../Form/Form';
+import firebase from 'firebase/app';
+import 'firebase/auth'
+
 
 class Log extends React.Component {
   constructor(props){
     super(props);
-    this.showSignIn = this.showSignIn.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
     this.state = {
       showWindow: false,
+      emailInputValue: '',
+      passwordInputValue: ''
     }
   }
 
-  showSignIn(e){
-    e.preventDefault();
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    if(emailInput && emailInput.value && passwordInput && passwordInput.value){
-      this.setState(() => ({ showWindow: true }))
-    } else {
-      this.setState(() => ({ showWindow: false }))
-      alert('niepoprawne dane')
+  handleChangeEmail(event) {
+    event.persist()
+    if(event && event.target != null) {
+    
+      this.setState(() => ({
+        emailInputValue: event.target.value,
+      }))
     }
   }
 
+  handleChangePassword(event) {
+    event.persist()
+    if(event && event.target != null) {
+    
+      this.setState(() => ({
+        passwordInputValue: event.target.value,
+      }))
+    }
+  }
 
   render(){
     return (
-      <Form showSignIn={this.showSignIn} showWindow={this.state.showWindow}/>
+      <Form 
+        emailInputValue={this.state.emailInputValue}
+        passwordInputValue={this.state.passwordInputValue}
+        handleChangeEmail={this.handleChangeEmail}
+        handleChangePassword={this.handleChangePassword}
+        {...this.props}
+      />
     );
   }
 }
