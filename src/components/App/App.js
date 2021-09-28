@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.css';
+import styles from './App.scss';
 import Log from '../Log/Log';
 
 const App = (props) => {
 
   return (
-    <div className="app">
+    <div className={styles.app}>
       <header className="App-header">
         <h1>Logowanie</h1>
       </header>

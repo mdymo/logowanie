@@ -20,17 +20,17 @@ console.log('app init')
 
 export function signInWithEmailPassword(email, password) {
   console.log('login start', email, password);
-   return firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      console.log(userCredential)
-      return Promise.resolve();
-    })
+  return firebase.auth().signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    console.log(userCredential)
+    return Promise.resolve();
+  })
   
-    .catch((error) => {
-      console.log('error', error.message);
-      alert('błędne dane');
-      return Promise.reject();
-    });
+  .catch((error) => {
+    console.log('error', error.message);
+    // alert('błędne dane');
+    return Promise.reject();
+  });
 }
 
 

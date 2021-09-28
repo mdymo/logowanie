@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AppRouter from './routers/AppRouter';
-import './styles/global.css';
+import './styles/global.scss';
 import './firebase/firebase';
 import firebase from 'firebase/app';
 
