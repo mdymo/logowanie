@@ -1,9 +1,7 @@
-import React from "react";
-import styles from './Log.scss';
+import React from 'react';
 import Form from '../Form/Form';
-import firebase from 'firebase/app';
-import 'firebase/auth'
-import validator from "validator";
+import 'firebase/auth';
+import validator from 'validator';
 import 'validator/lib/isEmail';
 
 
@@ -19,31 +17,31 @@ class Log extends React.Component {
       passwordInputValue: '',
       errorData: '',
       errorEmail: '',
-      errorPassword: ''
-    }
+      errorPassword: '',
+    };
   }
 
   handleChangeEmail(event) {
-    event.persist()
+    event.persist();
     if(event && event.target != null) {
     
       this.setState(() => ({
         emailInputValue: event.target.value,
-      }))
+      }));
     }
     
     if(event.target.value != 0 && !validator.isEmail(event.target.value)){
-      console.log('email nie jest ok')
-      event.target.style.borderColor = 'red'
+      console.log('email nie jest ok');
+      event.target.style.borderColor = 'red';
       this.setState(() => ({
-        errorEmail: 'Niepoprawny format E-mail'
-      }))
+        errorEmail: 'Niepoprawny format E-mail',
+      }));
     } else {
-      console.log('email jest ok')
+      console.log('email jest ok');
       event.target.style.borderColor = '#ced4da';
       this.setState(() => ({
-        errorEmail: ''
-      }))
+        errorEmail: '',
+      }));
     }
   }
 
@@ -60,36 +58,36 @@ class Log extends React.Component {
   // } 
 
   handleChangePassword(event) {
-    event.persist()
+    event.persist();
     if(event && event.target != null) {
     
       this.setState(() => ({
         passwordInputValue: event.target.value,
-      }))
+      }));
     }
 
     const passwordRegExp = new RegExp('(?=.*[0-9])');
-    const test = passwordRegExp.test(event.target.value)
+    const test = passwordRegExp.test(event.target.value);
     // console.log('test', test)
     if(event.target.value != 0 && !test){
       // console.log('haslo nie jest ok')
-      event.target.style.borderColor = 'red'
+      event.target.style.borderColor = 'red',
       this.setState(() => ({
-        errorPassword: 'Niepoprawny format hasła'
-      }))
+        errorPassword: 'Niepoprawny format hasła',
+      }));
     } else {
       // console.log('haslo jest ok')
-      event.target.style.borderColor = '#ced4da'
+      event.target.style.borderColor = '#ced4da',
       this.setState(() => ({
-        errorPassword: ''
-      }))
+        errorPassword: '',
+      }));
     }
   }
 
   validate() {
     this.setState(() => ({
-      errorData: 'Dane są nieprawidłowe'
-    }))
+      errorData: 'Dane są nieprawidłowe',
+    }));
   }
 
 

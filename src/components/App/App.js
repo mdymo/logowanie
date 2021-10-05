@@ -11,7 +11,7 @@ const App = (props) => {
       </header>
       <Log {...props}/>
     </div>
-  )
-}
+  );
+};
 
 export default App;
