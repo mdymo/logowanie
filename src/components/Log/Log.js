@@ -71,7 +71,7 @@ class Log extends React.Component {
     // console.log('test', test)
     if(event.target.value != 0 && !test){
       // console.log('haslo nie jest ok')
-      event.target.style.borderColor = 'red',
+      event.target.style.borderColor = 'red';
       this.setState(() => ({
         errorPassword: 'Niepoprawny format hasła',
       }));
@@ -93,19 +93,21 @@ class Log extends React.Component {
 
   render(){
     return (
-      <Form 
-        emailInputValue={this.state.emailInputValue}
-        passwordInputValue={this.state.passwordInputValue}
-        handleChangeEmail={this.handleChangeEmail}
-        handleChangePassword={this.handleChangePassword}
-        handleOnSubmit={this.handleOnSubmit}
-        validate={this.validate}
-        errorData={this.state.errorData}
-        errorEmail={this.state.errorEmail}
-        errorPassword={this.state.errorPassword}
-        // bdColor={this.state.bdColor}
-        {...this.props}
-      />
+      <div>
+        <Form 
+          emailInputValue={this.state.emailInputValue}
+          passwordInputValue={this.state.passwordInputValue}
+          handleChangeEmail={this.handleChangeEmail}
+          handleChangePassword={this.handleChangePassword}
+          handleOnSubmit={this.handleOnSubmit}
+          validate={this.validate}
+          errorData={this.state.errorData}
+          errorEmail={this.state.errorEmail}
+          errorPassword={this.state.errorPassword}
+          // bdColor={this.state.bdColor}
+          {...this.props}
+        />
+      </div>
     );
   }
 }

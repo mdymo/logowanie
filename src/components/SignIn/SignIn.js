@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { signOut } from '../../actions/auth';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 const SignIn = (props) => {
@@ -15,6 +15,7 @@ const SignIn = (props) => {
     if(logedInUser == null){
       props.history.push('/');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [logedInUser]);
 
   const onClick = (event) => {

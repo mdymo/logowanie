@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './Inputs.scss';
 
-const Inputs = (props) => (
+const InputsLog = (props) => (
 
 
   <div className="mb-3">
@@ -13,6 +13,6 @@ const Inputs = (props) => (
   </div>
 );
 
-// style={{borderColor: props.bdColor}}
 
-export default Inputs;
+
+export default InputsLog;

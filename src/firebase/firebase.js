@@ -27,9 +27,20 @@ export function signInWithEmailPassword(email, password) {
     })
   
     .catch((error) => {
-      console.log('error', error.message);
+      console.log('error', error);
       // alert('błędne dane');
-      return Promise.reject();
+      return Promise.reject(error);
+    });
+}
+
+export function createUserWithEmailPassword(email, password) {
+  return firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      return Promise.resolve(userCredential);
+    })
+
+    .catch((error) => {
+      return Promise.reject(error);
     });
 }
 

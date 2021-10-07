@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Inputs from '../Inputs/Inputs';
+import InputsLog from '../Inputs/InputsLog';
 import { startLogin } from '../../actions/auth';
 import styles from './Form.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import Register from '../Register/Register';
+
+
 
 const Form = (props) => {
   let emailInput = props.emailInputValue;
@@ -13,6 +14,7 @@ const Form = (props) => {
   
 
   const logedInUser = useSelector((state) => state.loginReducer.user);
+  const errorLabel = useSelector((state) => state.loginReducer.errorLabel);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,28 +36,33 @@ const Form = (props) => {
     // })
   };
 
-  const register = (event) => {
+  const registratePage = (event) => {
     event.preventDefault();
-
+    props.history.push('/register');
+    
   };
 
+  
   return (
     <form className='login'>
-      <Inputs 
+      <InputsLog
         emailInput={props.emailInputValue} 
         passwordInput={props.passwordInputValue} 
         handleChangeEmail={props.handleChangeEmail}
         handleChangePassword={props.handleChangePassword}
         errorPassword={props.errorPassword}
         errorEmail={props.errorEmail}
-        // bdColor={props.bdColor}
+        bdColor={props.bdColor}
       />
       <button type='submit' className="btn btn-outline-dark" onClick={onClick}>
         Zaloguj
       </button>
       <div className={styles.text}>
-        {props.errorData}
+        {errorLabel}
       </div>
+      <button type='submit' className="btn btn-outline-dark" onClick={registratePage}>
+        Rejestracja
+      </button>
     </form>
   );
 };
