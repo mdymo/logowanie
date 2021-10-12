@@ -5,23 +5,24 @@ import validator from 'validator';
 import 'validator/lib/isEmail';
 import { createUser } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../../interfaces/AppState';
 
 
 
 
 
 
-const Register = (props) => {
+const Register = (props: any) => {
 
-  const [email, setEmail] = useState('');
-  const [emailRepeat, setEmailRepeat] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorEmail, setErrorEmail] = useState('');
-  const [errorEmailRepeat, setErrorEmailRepeat] = useState('');
-  const [errorPassword, setErrorPassword] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [emailRepeat, setEmailRepeat] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errorEmail, setErrorEmail] = useState<string>('');
+  const [errorEmailRepeat, setErrorEmailRepeat] = useState<string>('');
+  const [errorPassword, setErrorPassword] = useState<string>('');
 
-  const createdUser = useSelector((state) => state.loginReducer.newUser);
-  const errorLabel = useSelector((state) => state.loginReducer.errorLabel);
+  const createdUser = useSelector((state: AppState) => state.loginReducer.user);
+  const errorLabel = useSelector((state: AppState) => state.loginReducer.errorLabel);
   const dispatch = useDispatch();
 
 
@@ -34,12 +35,12 @@ const Register = (props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [createdUser]);
 
-  const onClick = (event) => {
+  const onClick = (event: any) => {
     event.preventDefault();
     dispatch(createUser(email, password));
   };
 
-  const handleChangeEmail = (event) => {
+  const handleChangeEmail = (event: any) => {
     event.persist();
     if(event && event.target != null) {
       const email = event.target.value;
@@ -64,7 +65,7 @@ const Register = (props) => {
     }
   };
 
-  const handleChangeEmailRepeat = (event) => {
+  const handleChangeEmailRepeat = (event: any) => {
     event.persist();
     if(event && event.target != null) {
       const emailRepeat = event.target.value;
@@ -81,7 +82,7 @@ const Register = (props) => {
     }
   };
 
-  const handleChangePassword = (event) => {
+  const handleChangePassword = (event: any) => {
     event.persist();
     if(event && event.target != null) {
       const password = event.target.value;
@@ -110,7 +111,7 @@ const Register = (props) => {
         <h1>Rejestracja</h1>
       </header>
       <form>
-        <InputsRegister 
+        <InputsRegister
           handleChangeEmail={handleChangeEmail}
           errorEmail={errorEmail}
           errorEmailRepeat={errorEmailRepeat}

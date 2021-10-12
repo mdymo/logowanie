@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import App from '../components/App/App';
 import SignIn from '../components/SignIn/SignIn';

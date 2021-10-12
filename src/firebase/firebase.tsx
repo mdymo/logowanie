@@ -18,14 +18,13 @@ firebase.initializeApp(firebaseConfig);
 console.log('app init');
 
 
-export function signInWithEmailPassword(email, password) {
+export function signInWithEmailPassword(email: string, password: string) {
   console.log('login start', email, password);
   return firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       console.log(userCredential);
       return Promise.resolve(userCredential);
     })
-  
     .catch((error) => {
       console.log('error', error);
       // alert('błędne dane');
@@ -33,7 +32,7 @@ export function signInWithEmailPassword(email, password) {
     });
 }
 
-export function createUserWithEmailPassword(email, password) {
+export function createUserWithEmailPassword(email: string, password: string) {
   return firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       return Promise.resolve(userCredential);
@@ -43,6 +42,4 @@ export function createUserWithEmailPassword(email, password) {
       return Promise.reject(error);
     });
 }
-
-
 

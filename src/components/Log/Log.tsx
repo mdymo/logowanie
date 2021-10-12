@@ -5,31 +5,40 @@ import validator from 'validator';
 import 'validator/lib/isEmail';
 
 
-class Log extends React.Component {
-  constructor(props){
+interface LogState {
+  emailInputValue: string,
+  passwordInputValue: string,
+  // errorData: string,
+  errorEmail: string,
+  errorPassword: string,
+}
+
+
+class Log extends React.Component<any, LogState> {
+  constructor(props: any){
     super(props);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.validate = this.validate.bind(this);
+    // this.validate = this.validate.bind(this);
     this.state = {
       // bdColor: '',
       emailInputValue: '',
       passwordInputValue: '',
-      errorData: '',
+      // errorData: '',
       errorEmail: '',
       errorPassword: '',
     };
   }
 
-  handleChangeEmail(event) {
+  handleChangeEmail(event: any) {
     event.persist();
     if(event && event.target != null) {
-    
+
       this.setState(() => ({
         emailInputValue: event.target.value,
       }));
     }
-    
+
     if(event.target.value != 0 && !validator.isEmail(event.target.value)){
       console.log('email nie jest ok');
       event.target.style.borderColor = 'red';
@@ -55,12 +64,12 @@ class Log extends React.Component {
   //   this.setState(() => ({
   //     bdColor: '#ced4da'
   //   }))
-  // } 
+  // }
 
-  handleChangePassword(event) {
+  handleChangePassword(event: any) {
     event.persist();
     if(event && event.target != null) {
-    
+
       this.setState(() => ({
         passwordInputValue: event.target.value,
       }));
@@ -84,24 +93,24 @@ class Log extends React.Component {
     }
   }
 
-  validate() {
-    this.setState(() => ({
-      errorData: 'Dane są nieprawidłowe',
-    }));
-  }
+  // validate() {
+  //   this.setState(() => ({
+  //     errorData: 'Dane są nieprawidłowe',
+  //   }));
+  // }
 
 
   render(){
     return (
       <div>
-        <Form 
+        <Form
           emailInputValue={this.state.emailInputValue}
           passwordInputValue={this.state.passwordInputValue}
           handleChangeEmail={this.handleChangeEmail}
           handleChangePassword={this.handleChangePassword}
-          handleOnSubmit={this.handleOnSubmit}
-          validate={this.validate}
-          errorData={this.state.errorData}
+          // handleOnSubmit={this.handleOnSubmit}
+          // validate={this.validate}
+          // errorData={this.state.errorData}
           errorEmail={this.state.errorEmail}
           errorPassword={this.state.errorPassword}
           // bdColor={this.state.bdColor}

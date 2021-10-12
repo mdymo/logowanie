@@ -1,12 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import styles from './App.scss';
 import Log from '../Log/Log';
 
-const App = (props) => {
+const App: React.FC = (props) => {
 
   return (
     <div className={styles.app}>
-      <header className="App-header">
+      <header>
         <h1>Logowanie</h1>
       </header>
       <Log {...props}/>

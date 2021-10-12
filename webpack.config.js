@@ -4,10 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const baseConfig = () => ({
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'scripts_bundle.js',
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.css', '.scss'],
   },
   devtool: 'source-map',
   module: {
@@ -19,8 +22,13 @@ const baseConfig = () => ({
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader',
+      },
     ],
-  }, 
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
@@ -34,11 +42,11 @@ const devConfig = () => ({
       {
         test: /\.(s*)css$/,
         use: [
-          'style-loader', 
+          'style-loader',
           {
             loader: 'css-loader',
             query: {
-              modules: true, 
+              modules: true,
               localIdentName: '[name]_[local]_[hash:base64:5]',
             },
           },
@@ -59,15 +67,15 @@ const prodConfig = () => ({
           {
             loader: 'css-loader',
             query: {
-              modules: true, 
+              modules: true,
               localIdentName: '[name]_[local]_[hash:base64:5]',
             },
-          }, 
+          },
           'sass-loader',
         ],
       },
     ],
-  }, 
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'styles_bundle_[name].css',
@@ -78,6 +86,5 @@ const prodConfig = () => ({
 
 module.exports = (env, argv) => {
   const modeConfig = argv.mode == 'production' ? prodConfig : devConfig;
-
   return merge(baseConfig(), modeConfig());
 };

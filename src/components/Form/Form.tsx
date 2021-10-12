@@ -1,20 +1,30 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import * as React from 'react';
 import InputsLog from '../Inputs/InputsLog';
 import { startLogin } from '../../actions/auth';
 import styles from './Form.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { AppState } from '../../interfaces/AppState';
 
 
+interface FormProps {
+  emailInputValue: string,
+  passwordInputValue: string,
+  handleChangeEmail: (event: any) => void,
+  handleChangePassword: (event: any) => void,
+  errorPassword: string,
+  errorEmail: string,
+  history?: {push: (x: string) => void},
+}
 
-const Form = (props) => {
-  let emailInput = props.emailInputValue;
+const Form: (props: FormProps) => any = (props: FormProps) => {
+  let emailInput: string = props.emailInputValue;
   let passwordInput = props.passwordInputValue;
-  
 
-  const logedInUser = useSelector((state) => state.loginReducer.user);
-  const errorLabel = useSelector((state) => state.loginReducer.errorLabel);
+
+  const logedInUser = useSelector((state: AppState) => state.loginReducer.user);
+  const errorLabel = useSelector((state: AppState) => state.loginReducer.errorLabel);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,9 +33,9 @@ const Form = (props) => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [logedInUser]);
-  
 
-  const onClick = (event) => {
+
+  const onClick = (event: any) => {
     event.preventDefault();
     dispatch(startLogin(emailInput, passwordInput));
     // .then(() => {
@@ -36,23 +46,22 @@ const Form = (props) => {
     // })
   };
 
-  const registratePage = (event) => {
+  const registratePage = (event: any) => {
     event.preventDefault();
     props.history.push('/register');
-    
+
   };
 
-  
   return (
-    <form className='login'>
+    <form className={styles.login}>
       <InputsLog
-        emailInput={props.emailInputValue} 
-        passwordInput={props.passwordInputValue} 
+        emailInput={props.emailInputValue}
+        passwordInput={props.passwordInputValue}
         handleChangeEmail={props.handleChangeEmail}
         handleChangePassword={props.handleChangePassword}
         errorPassword={props.errorPassword}
         errorEmail={props.errorEmail}
-        bdColor={props.bdColor}
+        // bdColor={props.bdColor}
       />
       <button type='submit' className="btn btn-outline-dark" onClick={onClick}>
         Zaloguj
@@ -71,7 +80,7 @@ const Form = (props) => {
 
 export default Form;
 
-// const mapStateToProps = state => {   
+// const mapStateToProps = state => {
 //   console.log('state', state)
 //   return {
 //     logedInUser: state.loginReducer.user
@@ -82,5 +91,4 @@ export default Form;
 //   login: (email, password) =>  disptach(startLogin(email, password))
 // });
 
-    
 // export default connect(mapStateToProps, mapDispatchToProps)(Form)

@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import * as React from 'react';
 import { signOut } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { AppState } from '../../interfaces/AppState';
 
-const SignIn = (props) => {
-  
+const SignIn = (props: any) => {
 
-  const logedInUser = useSelector((state) => state.loginReducer.user);
+  const logedInUser = useSelector((state: AppState) => state.loginReducer.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,9 +18,9 @@ const SignIn = (props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [logedInUser]);
 
-  const onClick = (event) => {
+  const onClick = (event: any) => {
     event.preventDefault();
-    dispatch(signOut(props));
+    dispatch(signOut());
   };
 
   return (

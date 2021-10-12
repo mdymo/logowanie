@@ -1,18 +1,18 @@
+import { LoginReducerState } from '../interfaces/LoginReducerState';
 import { changeRegisterMessage, changeLoginMessage } from '../utils';
 
-const initialState = {
+const initialState: LoginReducerState = {
   loggedIn: false,
   user: null,
-  newUser: null,
   errorLabel: '',
 };
 
 
 
-export const loginReducer = (state = initialState, action) => {
+export const loginReducer = (state: LoginReducerState = initialState, action: any) => {
   switch (action.type) {
     case 'LOGIN':
-      return { 
+      return {
         ...state,
         loggedIn: true,
         user: action.payload,
@@ -31,7 +31,7 @@ export const loginReducer = (state = initialState, action) => {
     case 'REGISTER':
       return {
         ...state,
-        newUser: action.payload,
+        user: action.payload,
         errorLabel: '',
       };
     case 'REGISTER-ERROR':
@@ -39,7 +39,7 @@ export const loginReducer = (state = initialState, action) => {
         ...state,
         errorLabel: changeRegisterMessage(action.payload.code),
       };
-    default: 
+    default:
       return state;
   }
 };
